@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Introduction</h1>
+<p>Ceci est une application permettant d'étudier les failles de sécurité les plus communes.
+<ul>
+  <li>Injection SQL</li>
+  <li>XSS</li>
+  <li>Session fixation</li>
+  <li>XXE</li>
+</ul>
+<p>
+  Il s'agit d'un site de démonstration <strong>possédant des failles de sécurité</strong>, assurez vous de :
+<ul>
+  <li>ne pas configurer le compte de base de donnée avec un accès administrateur</li>
+  <li>lancer le site avec uniquement localhost en écoute</li>
+</ul>
+</p>
+
+{% endblock %}

