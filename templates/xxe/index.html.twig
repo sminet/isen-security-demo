@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>XXE</h1>
+<p>L'objectif est d'utiliser une injection XXE afin de récupérer des données sensibles du serveur.</p>
+<p>Essayer par exemple de récupérer le fichier :</p>
+<ul>
+  <li>Sous Windows : C:\Windows\System32\drivers\etc\hosts</li>
+  <li>Sous Linux : /etc/passwd</li>
+</ul>
+<p>Pour celà, cette page permet d'importer des produits en base depuis un fichier XML</p>
+<p>
+  Vous pouvez télécharger le template de ce fichier ici : <a download href="{{ asset('files/xxe_template.xml') }}">Template XML</a>
+</p>
+
+Importer des produits :
+</h2>
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="import" />
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<p></p>
+<h2>Les produits</h2>
+{% for product in products %}
+<div class="card mb-2">
+  <h5 class="card-header">
+    {{ product.name }}
+  </h5>
+  <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-muted">
+      Price :
+      {{ product.price / 100 }}
+      &euro;
+    </h6>
+    <p class="card-text">
+      {{ product.description }}
+    </p>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+    <product>
+        <name>TPhone X</name>
+        <price>96000</price>
+        <description>The beautiful TPhone X</description>
+    </product>
+    <product>
+        <name>GPhone V</name>
+        <price>16000</price>
+        <description>Simpler, better</description>
+    </product>
+</products>
