@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Session fixation</h1>
+<p>L'objectif de cet exercice est de démontrer le principe de fixation de session.</p>
+<p>Pour cela, il faut 2 navigateurs différents.</p>
+<p>Le premier représentera l'attaquant, le deuxième, la victime de l'attaque.</p>
+
+<p>Le principe est de générer une session invité sur ce site (ce qui est déjà fait si vous regardez cette page), puis d'envoyer un lien à la victime qui va cliquer dessus. Ce
+  lien embarquera l'id de la session de l'attaquant.</p>
+<p>La méthode permettant d'inciter une victime à cliquer sur un lien "piégé" ne sera pas abordée</p>
+<p>La victime va alors s'authentifier avec votre session... en rafraichissant la page, l'attaquant sera loggé avec le compte de la victime.</p>
+
+<ul>
+  <li>Ouvrer ce lien dans votre second navigateur (victime) : {{ absolute_url(path('session_fixation_auth')) }}?PHPSESSID={{ session.id }}
+  </li>
+  <li>Sur le second navigateur, authentifiez vous avec un des comptes suivants :
+    <ul>
+      {% for user in users %}
+      <li>{{ user.username }} : {{ user.password }}</li>
+      {% endfor %}
+    </ul>
+  </li>
+  <li>F5 !</li>
+</ul>
+
+{% if session.get('username') != null %}
+<div class="alert alert-success" role="alert">
+  Bonjour {{ session.get('firstname') }} {{ session.get('name') }} ({{ session.get('username') }}) !
+</div>
+{% else %}
+<div class="alert alert-danger" role="alert">
+  Vous utilisez un compte anonyme
+</div>
+{% endif %}
+
+{% endblock %}

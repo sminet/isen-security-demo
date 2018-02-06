@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Authentification</h1>
+<p>Bonjour, veuillez-vous authentifier pour accéder à vos données.</p>
+
+{% if message != null %}
+<div class="alert alert-{{ message.level }}" role="alert">
+  {{ message.text }}
+</div>
+{% endif %}
+
+<form method="post">
+  <div class="form-group">
+    <label for="inputUsername">Login</label>
+    <input type="text" class="form-control" id="inputUsername" placeholder="Username" name="username">
+  </div>
+  <div class="form-group">
+    <label for="inputPassword">Password</label>
+    <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}
